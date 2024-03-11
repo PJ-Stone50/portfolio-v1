@@ -48,7 +48,7 @@ const Container = ({ styles, isMobile }) => {
       whileInView={"onscreen"}
       viewport={{ once: false, amount: 0.1 }}
       transition={{ staggerChildren: 0.5 }}
-      className={isMobile ? "w-full h-fit flex" : "w-full h-fit flex flex-col"}
+      className="w-full h-fit flex flex-col"
     >
       <div className="w-screen topic flex  items-center pb-8 ">
         <span className="w-full bg-black h-[4px] mx-5 "></span>
@@ -64,60 +64,65 @@ const Container = ({ styles, isMobile }) => {
           ABOUT
         </motion.h1>
       </div>
-
-      <div className={styles.left}>
-        <motion.h1
-          // transition={{ duration: 0.5 }}
-          variants={textAnimate}
-          transition={{ duration: 1 }}
-          className={styles.heading}
-        >
-          From Figma to Reality
-        </motion.h1>
-        <motion.h1
-          transition={{ duration: 1 }}
-          variants={textAnimate}
-          className={styles.heading}
-        >
-          A Creative Explorer's Portfolio
-        </motion.h1>
-        <div>
-          <motion.p
+      <div
+        className={
+          isMobile ? "w-full h-fit flex" : "w-full h-fit flex flex-col"
+        }
+      >
+        <div className={styles.left}>
+          <motion.h1
+            // transition={{ duration: 0.5 }}
+            variants={textAnimate}
+            transition={{ duration: 1 }}
+            className={styles.heading}
+          >
+            From Figma to Reality
+          </motion.h1>
+          <motion.h1
             transition={{ duration: 1 }}
             variants={textAnimate}
-            className={styles.paragraph}
+            className={styles.heading}
           >
-            For me, web development isn't just about code; it's about
-            translating creative ideas into tangible experiences. This
-            portfolio, my first, showcases the evolution of my skills from
-            design in Figma to functional websites using ReactJS and
-            TailwindCSS. Dive in to discover my fascination with user
-            interaction, accessibility, and pushing the boundaries of what's
-            possible.
-          </motion.p>
+            A Creative Explorer's Portfolio
+          </motion.h1>
+          <div>
+            <motion.p
+              transition={{ duration: 1 }}
+              variants={textAnimate}
+              className={styles.paragraph}
+            >
+              For me, web development isn't just about code; it's about
+              translating creative ideas into tangible experiences. This
+              portfolio, my first, showcases the evolution of my skills from
+              design in Figma to functional websites using ReactJS and
+              TailwindCSS. Dive in to discover my fascination with user
+              interaction, accessibility, and pushing the boundaries of what's
+              possible.
+            </motion.p>
+          </div>
         </div>
-      </div>
-      <div className={styles.right}>
-        <motion.div
-          transition={{ duration: 1.5 }}
-          variants={textAnimate}
-          className={styles.iconContainer}
-        >
-          {MyIcons.map((item, index) => (
-            <div className={styles.iconItem} key={index}>
-              <img
-                src={item}
-                alt={`icon${index}`}
-                // style={{ maxWidth: "75px" }}
-                className={
-                  isTablet
-                    ? "max-w-[75px] transition-[1s] duration-500"
-                    : "max-w-[60px] transition-[1s] duration-500"
-                }
-              />
-            </div>
-          ))}
-        </motion.div>
+        <div className={styles.right}>
+          <motion.div
+            transition={{ duration: 1.5 }}
+            variants={textAnimate}
+            className={styles.iconContainer}
+          >
+            {MyIcons.map((item, index) => (
+              <div className={styles.iconItem} key={index}>
+                <img
+                  src={item}
+                  alt={`icon${index}`}
+                  // style={{ maxWidth: "75px" }}
+                  className={
+                    isTablet
+                      ? "max-w-[75px] transition-[1s] duration-500"
+                      : "max-w-[60px] transition-[1s] duration-500"
+                  }
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </motion.div>
   );
