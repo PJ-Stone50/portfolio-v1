@@ -23,7 +23,7 @@ const Container = ({ styles, isMobile }) => {
       whileInView={"onscreen"}
       viewport={{ once: false, amount: 0.1 }}
       transition={{ staggerChildren: 0.5 }}
-      className={isMobile ? "w-full h-fit flex" : "w-full h-fit flex flex-col"}
+      className="w-full h-fit flex flex-col"
     >
       <div className="w-screen topic flex  items-center pb-8 ">
         <span className="w-full bg-black h-[4px] mx-5 "></span>
@@ -40,43 +40,50 @@ const Container = ({ styles, isMobile }) => {
         </motion.h1>
       </div>
 
-      <div className={styles.left}>
-        <motion.img
-          transition={{ duration: 1 }}
-          variants={imageAnimate}
-          src={Tablet}
-          alt="tablet"
-          width={isMobile ? 400 : 300}
-          className={isMobile ? styles.tabletMobile : styles.tabletDesktop}
-        />
-      </div>
-      <div className={styles.right}>
-        <motion.h1
-          transition={{ duration: 1 }}
-          variants={textAnimate}
-          className={styles.heading}
-        >
-          I am a Developer
-        </motion.h1>
-        <motion.h1
-          transition={{ duration: 1 }}
-          variants={textAnimate}
-          className={styles.heading}
-        >
-          I write code for building websites
-        </motion.h1>
-        <motion.p
-          transition={{ duration: 1 }}
-          variants={textAnimate}
-          className={styles.paragraph}
-        >
-          I'm a passionate front-end developer fueled by a year of immersive
-          learning. This website, built with ReactJS, TailwindCSS, Figma, and
-          other tools, marks the exciting launch of my journey. While new to the
-          professional scene, my passion for crafting pixel-perfect experiences
-          burns bright. Explore my projects to witness my dedication to clean
-          code, user-centric design, and continuous improvement.
-        </motion.p>
+      <div
+        className={
+          isMobile ? "w-full h-fit flex" : "w-full h-fit flex flex-col"
+        }
+      >
+        <div className={styles.left}>
+          <motion.img
+            transition={{ duration: 1 }}
+            variants={imageAnimate}
+            src={Tablet}
+            alt="tablet"
+            width={isMobile ? 400 : 300}
+            className={isMobile ? styles.tabletMobile : styles.tabletDesktop}
+          />
+        </div>
+        <div className={styles.right}>
+          <motion.h1
+            transition={{ duration: 1 }}
+            variants={textAnimate}
+            className={styles.heading}
+          >
+            I am a Developer
+          </motion.h1>
+          <motion.h1
+            transition={{ duration: 1 }}
+            variants={textAnimate}
+            className={styles.heading}
+          >
+            I write code for building websites
+          </motion.h1>
+          <motion.p
+            transition={{ duration: 1 }}
+            variants={textAnimate}
+            className={styles.paragraph}
+          >
+            I'm a passionate front-end developer fueled by a year of immersive
+            learning. This website, built with ReactJS, TailwindCSS, Figma, and
+            other tools, marks the exciting launch of my journey. While new to
+            the professional scene, my passion for crafting pixel-perfect
+            experiences burns bright. Explore my projects to witness my
+            dedication to clean code, user-centric design, and continuous
+            improvement.
+          </motion.p>
+        </div>
       </div>
     </motion.div>
   );
