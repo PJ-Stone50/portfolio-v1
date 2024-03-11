@@ -1,0 +1,5 @@
+#Todo
+- Change Icon on Header to button "Hire me" when click => scroll to Contact component
+- Upsize for text animation
+- https://www.youtube.com/watch?v=hjbxaYTMhy0&ab_channel=TomIsLoading
+- https://www.youtube.com/watch?v=adTm3srZw6E&ab_channel=ui-code-tv
