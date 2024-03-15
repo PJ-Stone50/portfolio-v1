@@ -143,7 +143,7 @@ const styles = {
   left: "left pt-[1.5rem] px-[1.5rem] xl:pl-[8rem] max-w-[600px] duration-1000 w-full h-full items-center justify-center m-auto flex flex-col",
   right: "right w-full flex items-center justify-start ",
   heading: "text-3xl font-bold text-start w-full py-[0.5rem] ",
-  paragraph: "text-[18px] font-medium py-6 opacity-80 ",
+  paragraph: "text-[18px] font-normal py-6 opacity-80 ",
   iconContainer:
     "w-full h-auto flex flex-wrap items-center justify-center rounded-lg pb-[1.5rem] max-w[100px]",
   iconItem: "p-1 items-center flex justify-center",

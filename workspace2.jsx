@@ -1,151 +1,130 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import IconLinkedIn from "../../public/images/icon-linkedin.png";
-import IconGithub from "../../public/images/icon-github.png";
-import Profile from "../../public/images/profile.png";
-import ArrowDown from "../../public/images/arrow-down.png";
+import CardPortfolio from "./CardPortfolio";
 
-import { useTypewriter, Cursor } from "react-simple-typewriter";
+import DemoEcommerce from "../../public/images/demoEcommerce.png";
+import DemoPortfolio from "../../public/images/demoPortfolio.png";
 
 import { motion } from "framer-motion";
 
-// Header section for desktop view
-function DesktopHeader() {
-  const [text] = useTypewriter({
-    words: ["ReactJS", "NodeJS", "TailwindCSS", "Figma", "Gitlab"],
-    loop: {},
-    typeSpeed: 200,
-    deleteSpeed: 200,
-  });
+const demoEcommerce = {
+  src: DemoEcommerce,
+  heading: "Clothing Store",
+  p: "This online ordering platform, built to showcase my expertise in web development, leverages ReactJS for a user-friendly interface and NodeJS for robust server-side data management. Designed to push the boundaries of modern e-commerce, it stands as a testament to my skills and dedication.",
+  linkCode: "https://gitlab.com/PJ-Stone50/clothing-shop",
+  linkDemo: "https://vocal-churros-4f64bf.netlify.app/store",
+};
+
+const demoPortfolio = {
+  src: DemoPortfolio,
+  heading: "Portfolio",
+  p: "Explore my front-end web development projects, featuring responsive designs and interactive experiences, with Firebase handling authentication and cloud storage, and EmailJS seamlessly sending emails to my inbox.",
+  linkCode: "https://gitlab.com/PJ-Stone50/portfolio-v1",
+  linkDemo: "/",
+};
+
+export const imageAnimate = {
+  offscreen: { x: -100 },
+  onscreen: { x: 0, rotate: [0, 90, -90, 0] },
+  transition: { type: "spring", bounce: 0.8, duration: 3 },
+};
+export const textAnimate = {
+  offscreen: { y: 15, opacity: 0 },
+  onscreen: { y: 0, opacity: 1 },
+  transition: { type: "spring", bounce: 0.4, duration: 3 },
+};
+
+function Portfolio() {
+  const [currentComponent, setCurrentComponent] = useState(false);
+
+  const isTablet = useMediaQuery({ query: "(min-width: 1080px)" });
+  const isMobile = useMediaQuery({ query: "(min-width: 780px)" });
+
+  useEffect(() => {
+    console.log("Cur Component:", currentComponent);
+  }, [currentComponent]);
 
   return (
-    <div id="header" className="w-full h-screen items-center flex justify-center relative">
-      <div className="w-full h-full bg-white items-start flex flex-col justify-center pl-[15rem] gap-3 transition-[1s] duration-500">
-        <h1 className="type-writer text-black text-[32px] whitespace-nowrap">
-          I created by
-          <span className="ml-[5px]" style={{ fontWeight: "bold", opacity: "80%" }}>
-            {text}
-          </span>
-          <span style={{ color: "black" }}>
-            <Cursor />
-          </span>
-        </h1>
-
-        <h1 className="text-black font-bold text-[32px]">From Pixels to Products</h1>
-
-        <h1 className="text-black font-bold text-[32px]">My Design & Development Portfolio</h1>
-        <p className="text-[24px] text-black font-medium">
-          Witness the journey from initial concepts to polished products. I design and develop experiences that are both
-          beautiful and functional.
-        </p>
-        <div className="flex gap-3 bg-white mt-3">
-          <img className="cursor-pointer" src={IconLinkedIn} alt="linkedin" width={50} />
-          <img className="cursor-pointer" src={IconGithub} alt="github" width={50} />
-        </div>
+    <div
+      id="portfolio"
+      className={
+        isTablet
+          ? "relative w-full h-fit pb-5 px-[12rem] bg-red-500 items-start flex flex-col justify-center "
+          : "relative w-full h-fit pb-5  bg-amber-500 items-start flex flex-col justify-center "
+      }
+    >
+      <div
+        className={
+          isMobile
+            ? "absolute left-[20px] top-[40px] "
+            : "absolute left-[20px] top-[25px]"
+        }
+        style={{ zIndex: "1" }}
+      >
+        <button
+          onClick={() => setCurrentComponent(true)}
+          type="button"
+          className={
+            currentComponent
+              ? "portfolioBtn ml-[12rem] mt-1 active:bg-black hover:text-white hover:bg-black bg-black text-white active:text-white duration-500 rounded-t-sm btn-shadow  p-1 items-center"
+              : "portfolioBtn mt-1 active:bg-black hover:text-white hover:bg-black active:text-white duration-500 rounded-t-sm btn-shadow bg-white text-black p-1 items-center"
+          }
+        >
+          Portfolio
+        </button>
       </div>
-      <div className="w-full h-full bg-white items-start pl-[5rem] flex flex-col justify-center pr-5">
-        <img className="" src={Profile} alt="github" width={450} />
+      <div
+        className={
+          isMobile
+            ? "absolute left-[85px] top-[40px] "
+            : "absolute left-[90px] top-[25px] "
+        }
+        style={{ zIndex: "0" }}
+      >
+        <button
+          onClick={() => setCurrentComponent(false)}
+          className={
+            currentComponent
+              ? "portfolioBtn ml-[12rem] mt-1 active:bg-black hover:text-white hover:bg-black bg-white text-black active:text-white duration-500 rounded-t-sm btn-shadow  p-1 items-center"
+              : "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black active:text-white duration-500 rounded-t-sm btn-shadow bg-black text-white p-1 items-center"
+          }
+        >
+          Ecommerce
+        </button>
       </div>
-      <motion.div
-  style={{ position: "absolute", bottom: 75, left: "50%", cursor: "pointer" }}
-  animate={{
-    translateY: [0, -15, 0, -15, 0], // Animate translateY from 0 to -15 and back to 0, repeated
-  }}
-  transition={{ duration: 2, ease: "easeInOut", repeat: Infinity }} // Animation settings
->
-  <a href="#about" className="">
-    <img src={ArrowDown} alt="arrow-down" width={50} />
-  </a>
-</motion.div>
-
+      <div className="w-screen topic flex  items-center pb-8 ">
+        <span className="w-full bg-black h-[4px] mx-5 "></span>
+        <motion.h1
+          transition={{ duration: 1 }}
+          animater={{ textAnimate }}
+          className={
+            isMobile
+              ? "text-[32px] font-bold mt-[-8px] mr-5"
+              : "text-[24px] font-bold mt-[-8px] mr-5"
+          }
+        >
+          PORTFOLIO
+        </motion.h1>
+      </div>
+      {!currentComponent ? (
+        <CardPortfolio
+          src={demoEcommerce.src}
+          heading={demoEcommerce.heading}
+          p={demoEcommerce.p}
+          linkCode={demoEcommerce.linkCode}
+          linkDemo={demoEcommerce.linkDemo}
+        />
+      ) : (
+        <CardPortfolio
+          src={demoPortfolio.src}
+          heading={demoPortfolio.heading}
+          p={demoPortfolio.p}
+          linkCode={demoPortfolio.linkCode}
+          linkDemo={demoPortfolio.linkDemo}
+        />
+      )}
     </div>
   );
 }
 
-// Header section for mobile view
-function TabletHeader() {
-  const [text] = useTypewriter({
-    words: ["ReactJS", "NodeJS", "TailwindCSS", "Figma", "Gitlab"],
-    loop: {},
-  });
-
-  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
-  const padding = isMobile ? "1rem" : "5rem";
-
-  return (
-    <div className="w-full h-full py-5 bg-white items-center flex flex-col-reverse justify-center transition-[1s] duration-500">
-      <div style={{ padding: `1rem ${padding} 0rem ${padding}` }} className="w-full h-full bg-white items-start gap-3 flex flex-col justify-start px-5 py-5 transition-[1s] duration-500">
-        <h1 className="type-writer text-black font-medium text-[32px] whitespace-nowrap">
-          I created by
-          <span className="ml-[5px]" style={{ fontWeight: "bold", opacity: "80%" }}>
-            {text}
-          </span>
-          <span style={{ color: "black" }}>
-            <Cursor />
-          </span>
-        </h1>
-
-        <h1 className="text-black font-bold text-[24px]">From Pixels to Products</h1>
-        <h1 className="text-black font-bold text-[24px]">My Design & Development Portfolio</h1>
-        <p className="text-[20px] text-black font-medium">
-          Witness the journey from initial concepts to polished products. I design and develop experiences that are both
-          beautiful and functional.
-        </p>
-        <div className="flex gap-3 bg-white mt-3 transition-[1s] duration-500">
-          <img className="cursor-pointer opacity-80 hover:opacity-100 duration-500" src={IconLinkedIn} alt="linkedin" width={40} />
-          <img className="cursor-pointer opacity-80 hover:opacity-100 duration-500" src={IconGithub} alt="github" width={40} />
-        </div>
-      </div>
-      <div className="w-full h-full py-[3rem] bg-white items-center flex flex-col justify-center px-5 transition-[1s] duration-500">
-        <img className="" src={Profile} alt="profile-img" width={250} />
-      </div>
-    </div>
-  );
-}
-
-
-function MobileHeader() {
-  const [text] = useTypewriter({
-    words: ["ReactJS", "NodeJS", "TailwindCSS", "Figma", "Gitlab"],
-    loop: {},
-  });
-
-  return (
-    <div className="w-full h-full py-5 bg-white items-center flex flex-col-reverse justify-center transition-[1s] duration-500">
-      <div style={{ padding: "1rem" }} className="w-full h-full bg-white items-start gap-3 flex flex-col justify-start px-5 py-5 transition-[1s] duration-500">
-        <h1 className="type-writer text-black font-medium text-[32px] whitespace-nowrap">
-          I created by
-          <span className="ml-[5px]" style={{ fontWeight: "bold", opacity: "80%" }}>
-            {text}
-          </span>
-          <span style={{ color: "black" }}>
-            <Cursor />
-          </span>
-        </h1>
-
-        <h1 className="text-black font-bold text-[24px]">From Pixels to Products</h1>
-        <h1 className="text-black font-bold text-[24px]">My Design & Development Portfolio</h1>
-        <p className="text-[20px] text-black font-medium">
-          Witness the journey from initial concepts to polished products. I design and develop experiences that are both
-          beautiful and functional.
-        </p>
-        <div className="flex gap-3 bg-white mt-3 transition-[1s] duration-500">
-          <img className="cursor-pointer opacity-80 hover:opacity-100 duration-500" src={IconLinkedIn} alt="linkedin" width={40} />
-          <img className="cursor-pointer opacity-80 hover:opacity-100 duration-500" src={IconGithub} alt="github" width={40} />
-        </div>
-      </div>
-      <div className="w-full h-full py-[3rem] bg-white items-center flex flex-col justify-center px-5 transition-[1s] duration-500">
-        <img className="" src={Profile} alt="profile-img" width={250} />
-      </div>
-    </div>
-  );
-}
-
-function Header() {
-  const isTablet = useMediaQuery({ query: "(min-width: 768px)" });
-  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
-
-  return <>{isTablet ? <DesktopHeader /> : (isMobile ? <MobileHeader /> : <TabletHeader />)}</>;
-}
-
-export default Header;
+export default Portfolio;

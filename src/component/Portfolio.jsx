@@ -20,7 +20,7 @@ const demoPortfolio = {
   heading: "Portfolio",
   p: "Explore my front-end web development projects, featuring responsive designs and interactive experiences, with Firebase handling authentication and cloud storage, and EmailJS seamlessly sending emails to my inbox.",
   linkCode: "https://gitlab.com/PJ-Stone50/portfolio-v1",
-  linkDemo: "/",
+  linkDemo: "https://portfolio-v1-tan-two.vercel.app/",
 };
 
 export const imageAnimate = {
@@ -47,7 +47,11 @@ function Portfolio() {
   return (
     <div
       id="portfolio"
-      className="relative w-full h-fit pb-5 items-start flex flex-col justify-center "
+      className={
+        isTablet
+          ? "relative w-full h-fit pb-5  shadow-lg items-start flex flex-col justify-center "
+          : "relative w-full h-fit pb-5  shadow-lg items-start flex flex-col justify-center "
+      }
     >
       <div
         className={

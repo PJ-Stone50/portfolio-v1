@@ -86,7 +86,7 @@ const Container = ({ isMobile }) => {
           className={
             isTablet
               ? "left w-full h-fit  pl-[1.5rem] pr-[1.5rem] flex flex-col items-center justify-center gap-0 transition-[1s]"
-              : "left w-full h-fit  px-[1rem]  flex flex-col items-center justify-center gap-0 transition-[1s]"
+              : "left w-full h-fit  pl-[1rem]  flex flex-col items-center justify-end gap-0 transition-[1s]"
           }
         >
           <motion.h1
@@ -244,8 +244,8 @@ function Contact() {
       id="contact"
       className={
         isTablet
-          ? "w-full h-screen bg-white items-center flex  justify-center"
-          : "w-full h-full bg-white items-center flex flex-col justify-center"
+          ? "w-full h-full   bg-white items-center flex  justify-center"
+          : "w-full h-full  px[3rem] bg-white items-center flex flex-col justify-center"
       }
     >
       <Container isMobile={isMobile} />

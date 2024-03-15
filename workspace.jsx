@@ -1,100 +1,117 @@
-import React from "react";
-import Tablet from "../../public/images/tablet.png";
-import { useMediaQuery } from "react-responsive";
+import React, { useState } from "react";
+import ResumeImage from "../../public/images/resume.png";
 
-// Framer-motion
 import { motion } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
+import DownloadImage from "../../public/images/icons/download.png";
 
-export const imageAnimate = {
-  offscreen: { x: -100 },
-  onscreen: { x: 0, rotate: [0, 90, -90, 0] },
-  transition: { type: "spring", bounce: 0.8, duration: 3 },
-};
 export const textAnimate = {
   offscreen: { y: 15, opacity: 0 },
   onscreen: { y: 0, opacity: 1 },
   transition: { type: "spring", bounce: 0.4, duration: 3 },
 };
 
-const Container = () => {
-  const isMobile = useMediaQuery({ query: "(min-width: 780px)" });
-  return (
-    <motion.div
-      initial={"offscreen"}
-      whileInView={"onscreen"}
-      viewport={{ once: false, amount: 0.1 }}
-      transition={{ staggerChildren: 0.5 }}
-      className="w-full h-fit flex"
-    >
-      <div className={styles.left}>
-        <motion.img
-          transition={{ duration: 1 }}
-          variants={imageAnimate}
-          src={Tablet}
-          alt="tablet"
-          width={isMobile ? 400 : 300}
-          className={isMobile ? styles.tabletMobile : styles.tabletDesktop}
-        />
-      </div>
-      <div className={styles.right}>
-        <motion.h1
-          transition={{ duration: 1 }}
-          variants={textAnimate}
-          className={styles.heading}
-        >
-          I am a Developer
-        </motion.h1>
-        <motion.h1
-          transition={{ duration: 1 }}
-          variants={textAnimate}
-          className={styles.heading}
-        >
-          I write code for building websites
-        </motion.h1>
-        <motion.p
-          transition={{ duration: 1 }}
-          variants={textAnimate}
-          className={styles.paragraph}
-        >
-          I'm a passionate front-end developer fueled by a year of immersive
-          learning. This website, built with ReactJS, TailwindCSS, Figma, and
-          other tools, marks the exciting launch of my journey. While new to the
-          professional scene, my passion for crafting pixel-perfect experiences
-          burns bright. Explore my projects to witness my dedication to clean
-          code, user-centric design, and continuous improvement.
-        </motion.p>
-      </div>
-    </motion.div>
-  );
-};
-
-const AboutDescription1 = () => {
+function Resume() {
   const isTablet = useMediaQuery({ query: "(min-width: 1080px)" });
   const isMobile = useMediaQuery({ query: "(min-width: 780px)" });
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const handleViewResume = () => {
+    console.log("Viewing");
+    setIsOpenModal(true);
+  };
 
   return (
-    <div className={isTablet ? tabletStyles.container : mobileStyles.container}>
-      <Container />
+    <div
+      id="resume"
+      className="relative w-full h-fit pb-5 items-start flex flex-col justify-center"
+    >
+      {isOpenModal && (
+        <>
+          <div className="fix w-full h-screen flex flex-col items-center bg-[#181818] opacity-75 shadow-lg">
+            <button
+              className="absolute top-0 right-5 text-[24px] text-white"
+              onClick={() => setIsOpenModal(false)}
+            >
+              x
+            </button>
+          </div>
+          <div
+            className={
+              isTablet
+                ? "img-container absolute top-0 left-[30%] w-full flex justify-center my-5 mx-5"
+                : "absolute top-10 w-screen h-screen"
+            }
+          >
+            <img
+              src={ResumeImage}
+              alt="resume"
+              // width={isMobile ? 100% : 300}
+              className="shadow-xl cursor-pointer w-full h-3/4 m-auto"
+              onClick={handleViewResume}
+            />
+          </div>
+        </>
+      )}
+      <div className="w-screen topic flex  items-center pb-8 ">
+        <span className="w-full bg-black h-[4px] mx-5 "></span>
+        <motion.h1
+          transition={{ duration: 1 }}
+          animater={{ textAnimate }}
+          className={
+            isMobile
+              ? "text-[32px] font-bold mt-[-8px] mr-5"
+              : "text-[24px] font-bold mt-[-8px] mr-5"
+          }
+        >
+          RESUME
+        </motion.h1>
+      </div>
+
+      <div
+        className={
+          isMobile
+            ? "w-screen h-full flex gap-3 justify-center"
+            : "w-screen h-full flex flex-col gap-3 justify-center items-center"
+        }
+      >
+        <div className="img-container w-fit flex justify-center mx-5">
+          <img
+            src={ResumeImage}
+            alt="resume"
+            width={isMobile ? 500 : 300}
+            className="shadow-xl cursor-pointer"
+            onClick={handleViewResume}
+          />
+        </div>
+        <div className="right w-full h-full xl:max-w-[400px] mx-5 mr-5   flex flex-col p-5 shadow-xl rounded-sm">
+          <h1 className="text-[24px] font-bold">Resume</h1>
+          <p className="pb-3 duration-500">
+            Step into my world, where the journey from novice programmer to
+            aspiring front-end developer unfolds. This resume captures my
+            evolution, highlighting a deep dive into Python before transitioning
+            to the vibrant landscape of web development. With a keen interest in
+            e-commerce, I've honed my skills in HTML, CSS, and JavaScript,
+            further enriched by my proficiency in React and NodeJS libraries,
+            all underscored by a commitment to both waterfall and agile
+            methodologies
+          </p>
+          <button
+            type="button"
+            className="rounded-md active:bg-black duration-500 active:text-white btn-shadow w-fit h-fit flex gap-2 bg-white px-3 py-1 "
+          >
+            <p>Download</p>
+            <img src={DownloadImage} alt="download" width={30} />
+          </button>
+        </div>
+      </div>
+
+      {/* <div className="w-full bg-red-500 p-3 flex">
+        <h1 className="w-full bg-stone-300">1</h1>
+        <h1 className="w-full bg-stone-500">2</h1>
+      </div> */}
     </div>
   );
-};
+}
 
-const styles = {
-  left: "left w-full h-fit py-5 px-5  flex items-center justify-center",
-  right:
-    "right xl:pr-[15rem] w-full h-full items-center justify-center m-auto flex flex-col px-5 pb-3",
-  heading: "text-3xl font-bold text-start w-full py-[0.5rem] whitespace-nowrap",
-  paragraph: "text-[18px] font-medium py-3 opacity-80",
-  tabletDesktop: "transition-[1s] duration-1000",
-  tabletMobile: "transition-[1s] duration-1000 py-12",
-};
-
-const tabletStyles = {
-  container: "w-full h-screen bg-white items-center flex justify-center",
-};
-
-const mobileStyles = {
-  container: "w-full h-full bg-white items-center flex flex-col justify-center",
-};
-
-export default AboutDescription1;
+export default Resume;
