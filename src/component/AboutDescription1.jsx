@@ -29,7 +29,7 @@ const Container = ({ styles, isMobile }) => {
         <span className="w-full bg-black h-[4px] mx-5 "></span>
         <motion.h1
           transition={{ duration: 1 }}
-          animater={{ textAnimate }}
+          animate={{ textAnimate }}
           className={
             isMobile
               ? "text-[32px] font-bold mt-[-8px] mr-5"
@@ -98,7 +98,7 @@ const AboutDescription1 = () => {
     right:
       "right xl:pr-[15rem] w-full h-full items-center justify-center m-auto flex flex-col px-5 pb-3",
     heading: "text-3xl font-bold text-start w-full py-[0.5rem]",
-    paragraph: "text-[18px] font-medium py-3 opacity-80",
+    paragraph: "text-[18px] font-normal py-3 opacity-80",
     tabletDesktop: "transition-[1s] duration-1000",
     tabletMobile: "transition-[1s] duration-1000 py-12",
   };
