@@ -58,7 +58,7 @@ const Container = ({ isMobile }) => {
       whileInView={"onscreen"}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ staggerChildren: 0.5 }}
-      className="w-full h-fit flex flex-col bg-white"
+      className="w-full h-fit flex flex-col "
     >
       <div className="w-screen topic flex  items-center ">
         <span className="w-full bg-black h-[4px] mx-5 "></span>
@@ -76,17 +76,15 @@ const Container = ({ isMobile }) => {
       </div>
       <div
         className={
-          isMobile
-            ? "w-full h-full flex bg-white "
-            : "w-full h-full flex flex-col bg-white"
+          isMobile ? "w-full h-full flex " : "w-full h-full flex flex-col "
         }
       >
         {/* Left */}
         <div
           className={
-            isTablet
-              ? "left w-full h-fit  pl-[1.5rem] pr-[1.5rem] flex flex-col items-center justify-center gap-0 transition-[1s]"
-              : "left w-full h-fit  pl-[1rem]  flex flex-col items-center justify-end gap-0 transition-[1s]"
+            isMobile
+              ? "left  w-full h-fit  px-[3rem] mt-[2rem] flex flex-col items-center justify-center gap-0 transition-[1s]"
+              : "left  w-full h-fit  px-[1.5rem] mt-[2rem] flex flex-col items-center justify-end gap-0 transition-[1s]"
           }
         >
           <motion.h1
@@ -187,7 +185,7 @@ const Container = ({ isMobile }) => {
           className={
             isTablet
               ? "right w-full h-full pt-[5rem] items-center justify-center m-auto flex flex-col pl-[1.5rem] pr-[5rem] pb-[3rem] gap-5"
-              : "right w-full h-full duration-500 transition-[1s] mt-[30px]  items-center justify-center m-auto flex flex-col px-[1.5rem] pb-[3rem] gap-5"
+              : "right w-full h-full duration-500 transition-[1s] mt-[30px]  items-start justify-start m-auto flex flex-col px-[1.5rem] pb-[3rem] gap-5"
           }
         >
           <motion.form
@@ -195,20 +193,24 @@ const Container = ({ isMobile }) => {
             variants={textAnimate}
             ref={form}
             onSubmit={sendEmail}
-            className="flex flex-col gap-3 w-full"
+            className={
+              isMobile
+                ? "flex flex-col gap-3 w-full "
+                : "flex flex-col gap-3 w-full "
+            }
           >
             <input
               type="text"
               name="user_name"
               placeholder="Name*"
-              className="border-[0.5px] border-black xl:w-[500px] md:w-full h-[40px] rounded-md p-5 font-semibold"
+              className="border-[0.5px] border-black  md:w-full h-[40px] rounded-md p-5 font-semibold"
               onChange={(e) => setName(e.target.value)}
             />
             <input
               type="text"
               name="user_email"
               placeholder="Email Address*"
-              className="border-[0.5px] border-black xl:w-[500px] md:w-full h-[40px] rounded-md p-5 font-semibold"
+              className="border-[0.5px] border-black  md:w-full h-[40px] rounded-md p-5 font-semibold"
               onChange={(e) => setEmail(e.target.value)}
             />
 
@@ -218,14 +220,14 @@ const Container = ({ isMobile }) => {
               cols="30"
               rows="10"
               placeholder="Message*"
-              className="border-[0.5px] border-black xl:w-[500px] md:w-full h-[200px] rounded-md p-5 font-semibold"
+              className="border-[0.5px] border-black  md:w-full h-[200px] rounded-md p-5 font-semibold"
               onChange={(e) => setMessage(e.target.value)}
             ></textarea>
 
             <input
               type="submit"
               value="Send"
-              className="w-full h-[40px] xl:w-[500px] hover:opacity-80 duration-500
+              className="w-full h-[40px]  hover:opacity-80 duration-500
  bg-black rounded-md text-white text-[24px] font-semibold text-center items-center cursor-pointer"
             />
           </motion.form>
