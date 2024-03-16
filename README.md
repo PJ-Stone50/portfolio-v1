@@ -9,4 +9,4 @@ Currently, two official plugins are available:
 
 
 # Demo
-- https://portfolio-v1-h08ao14oh-pj-stone50s-projects.vercel.app/
+- https://portfolio-v1-tan-two.vercel.app/
