@@ -1,58 +1,51 @@
-import React, { useState } from "react";
-import ResumeImage from "../../public/images/resume.png";
+import React, { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import CardPortfolio from "./CardPortfolio";
+
+import DemoEcommerce from "../../public/images/demoEcommerce.png";
+import DemoPortfolio from "../../public/images/demoPortfolio.png";
 
 import { motion } from "framer-motion";
-import { useMediaQuery } from "react-responsive";
-import DownloadImage from "../../public/images/icons/download.png";
 
+const demoEcommerce = {
+  src: DemoEcommerce,
+  heading: "Clothing Store",
+  p: "This online ordering platform, built to showcase my expertise in web development, leverages ReactJS for a user-friendly interface and NodeJS for robust server-side data management. Designed to push the boundaries of modern e-commerce, it stands as a testament to my skills and dedication.",
+  linkCode: "https://gitlab.com/PJ-Stone50/clothing-shop",
+  linkDemo: "https://vocal-churros-4f64bf.netlify.app/store",
+};
+
+const demoPortfolio = {
+  src: DemoPortfolio,
+  heading: "Portfolio",
+  p: "Explore my front-end web development projects, featuring responsive designs and interactive experiences, with Firebase handling authentication and cloud storage, and EmailJS seamlessly sending emails to my inbox.",
+  linkCode: "https://gitlab.com/PJ-Stone50/portfolio-v1",
+  linkDemo: "https://portfolio-v1-tan-two.vercel.app/",
+};
+
+export const imageAnimate = {
+  offscreen: { x: -100 },
+  onscreen: { x: 0, rotate: [0, 90, -90, 0] },
+  transition: { type: "spring", bounce: 0.8, duration: 3 },
+};
 export const textAnimate = {
   offscreen: { y: 15, opacity: 0 },
   onscreen: { y: 0, opacity: 1 },
   transition: { type: "spring", bounce: 0.4, duration: 3 },
 };
 
-function Resume() {
+function Portfolio() {
+  const [currentComponent, setCurrentComponent] = useState(false);
+
   const isTablet = useMediaQuery({ query: "(min-width: 1080px)" });
   const isMobile = useMediaQuery({ query: "(min-width: 780px)" });
-  const [isOpenModal, setIsOpenModal] = useState(false);
 
-  const handleViewResume = () => {
-    console.log("Viewing");
-    setIsOpenModal(true);
-  };
+  useEffect(() => {
+    console.log("Cur Component:", currentComponent);
+  }, [currentComponent]);
 
   return (
-    <div
-      id="resume"
-      className="relative w-full h-fit pb-5 items-start flex flex-col justify-center"
-    >
-      {isOpenModal && (
-        <>
-          <div className="fix w-full h-screen flex flex-col items-center bg-[#181818] opacity-75 shadow-lg">
-            <button
-              className="absolute top-0 right-5 text-[24px] text-white"
-              onClick={() => setIsOpenModal(false)}
-            >
-              x
-            </button>
-          </div>
-          <div
-            className={
-              isTablet
-                ? "img-container absolute top-0 left-[30%] w-full flex justify-center my-5 mx-5"
-                : "absolute top-10 w-screen h-screen"
-            }
-          >
-            <img
-              src={ResumeImage}
-              alt="resume"
-              // width={isMobile ? 100% : 300}
-              className="shadow-xl cursor-pointer w-full h-3/4 m-auto"
-              onClick={handleViewResume}
-            />
-          </div>
-        </>
-      )}
+    <div>
       <div className="w-screen topic flex  items-center pb-8 ">
         <span className="w-full bg-black h-[4px] mx-5 "></span>
         <motion.h1
@@ -64,54 +57,77 @@ function Resume() {
               : "text-[24px] font-bold mt-[-8px] mr-5"
           }
         >
-          RESUME
+          PORTFOLIO
         </motion.h1>
       </div>
-
       <div
+        id="portfolio"
         className={
           isMobile
-            ? "w-screen h-full flex gap-3 justify-center"
-            : "w-screen h-full flex flex-col gap-3 justify-center items-center"
+            ? "relative bg-white  py-[3rem] w-full h-fit pb-5  shadow-lg items-start flex flex-col justify-center "
+            : "relative bg-red-500 w-full h-fit pb-5  shadow-lg items-start flex flex-col justify-center "
         }
       >
-        <div className="img-container w-fit flex justify-center mx-5">
-          <img
-            src={ResumeImage}
-            alt="resume"
-            width={isMobile ? 500 : 300}
-            className="shadow-xl cursor-pointer"
-            onClick={handleViewResume}
-          />
-        </div>
-        <div className="right w-full h-full xl:max-w-[400px] mx-5 mr-5   flex flex-col p-5 shadow-xl rounded-sm">
-          <h1 className="text-[24px] font-bold">Resume</h1>
-          <p className="pb-3 duration-500">
-            Step into my world, where the journey from novice programmer to
-            aspiring front-end developer unfolds. This resume captures my
-            evolution, highlighting a deep dive into Python before transitioning
-            to the vibrant landscape of web development. With a keen interest in
-            e-commerce, I've honed my skills in HTML, CSS, and JavaScript,
-            further enriched by my proficiency in React and NodeJS libraries,
-            all underscored by a commitment to both waterfall and agile
-            methodologies
-          </p>
+        <div
+          className={
+            isMobile
+              ? "absolute left-[212px] top-[12px] "
+              : "absolute left-[110px] top-[-36px]"
+          }
+          style={{ zIndex: "0" }}
+        >
           <button
+            onClick={() => setCurrentComponent(true)}
             type="button"
-            className="rounded-md active:bg-black duration-500 active:text-white btn-shadow w-fit h-fit flex gap-2 bg-white px-3 py-1 "
+            className={
+              currentComponent
+                ? "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black bg-black text-white active:text-white duration-500 rounded-t-sm btn-shadow  p-1 items-center"
+                : "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black active:text-white duration-500 rounded-t-sm btn-shadow bg-white text-black p-1 items-center"
+            }
           >
-            <p>Download</p>
-            <img src={DownloadImage} alt="download" width={30} />
+            Portfolio
           </button>
         </div>
-      </div>
+        <div
+          className={
+            isMobile
+              ? "absolute left-[282px] top-[12px] "
+              : "absolute left-[20px] top-[-36px] "
+          }
+          style={{ zIndex: "0" }}
+        >
+          <button
+            onClick={() => setCurrentComponent(false)}
+            className={
+              currentComponent
+                ? "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black bg-white text-black active:text-white duration-500 rounded-t-sm btn-shadow  p-1 items-center"
+                : "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black active:text-white duration-500 rounded-t-sm btn-shadow bg-black text-white p-1 items-center"
+            }
+          >
+            Ecommerce
+          </button>
+        </div>
 
-      {/* <div className="w-full bg-red-500 p-3 flex">
-        <h1 className="w-full bg-stone-300">1</h1>
-        <h1 className="w-full bg-stone-500">2</h1>
-      </div> */}
+        {!currentComponent ? (
+          <CardPortfolio
+            src={demoEcommerce.src}
+            heading={demoEcommerce.heading}
+            p={demoEcommerce.p}
+            linkCode={demoEcommerce.linkCode}
+            linkDemo={demoEcommerce.linkDemo}
+          />
+        ) : (
+          <CardPortfolio
+            src={demoPortfolio.src}
+            heading={demoPortfolio.heading}
+            p={demoPortfolio.p}
+            linkCode={demoPortfolio.linkCode}
+            linkDemo={demoPortfolio.linkDemo}
+          />
+        )}
+      </div>
     </div>
   );
 }
 
-export default Resume;
+export default Portfolio;

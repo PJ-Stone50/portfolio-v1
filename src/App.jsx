@@ -23,15 +23,15 @@ function App() {
 
   useEffect(() => {
     // Require User login
-    onAuthStateChanged(auth, (user) => {
-      // console.log("User", user);
-      if (user) {
-        console.log("Found User", user);
-        // ...
-      } else {
-        navigate("/login");
-      }
-    });
+    // onAuthStateChanged(auth, (user) => {
+    //   // console.log("User", user);
+    //   if (user) {
+    //     console.log("Found User", user);
+    //     // ...
+    //   } else {
+    //     navigate("/login");
+    //   }
+    // });
   }, []);
 
   // Scroll to the top of website when refreshing

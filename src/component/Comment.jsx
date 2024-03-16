@@ -6,6 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 // Framer-motion
 import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
+import { useNavigate } from "react-router-dom";
 
 export const textAnimate = {
   offscreen: { y: 15, opacity: 0 },
@@ -27,6 +28,7 @@ const Comment = () => {
     birthdate: "",
     interests: [],
   });
+  const navigate = useNavigate();
 
   const fetchUser = async (userUid) => {
     const docRef = doc(db, "profile", userUid);
@@ -84,23 +86,34 @@ const Comment = () => {
   };
 
   const handleCommentSubmit = async () => {
-    // console.log("Fullname", fullname);
     try {
-      // Add the new comment to Firestore
-      await addDoc(collection(db, "comments"), {
-        text: newComment,
-        fullname: formData.fullname,
-        // fullname: userData.fullname,
-        user: {
-          // Replace these placeholders with actual user data
-          name: "John Doe",
-          image: "https://example.com/avatar.jpg",
-        },
-      });
-      // console.warn(currentUser);
+      // Wait for the auth state to change and check if a user is logged in
+      onAuthStateChanged(auth, async (user) => {
+        // Make the callback async
+        if (user) {
+          // Add the new comment to Firestore
+          await addDoc(collection(db, "comments"), {
+            text: newComment,
+            fullname: formData.fullname,
+            user: {
+              // Replace these placeholders with actual user data
+              name: "John Doe",
+              image: "https://example.com/avatar.jpg",
+            },
+          });
 
-      // Clear the input field after submitting the comment
-      setNewComment("");
+          // Clear the input field after submitting the comment
+          setNewComment("");
+
+          // If more actions are needed after setting the comment,
+          // make sure to include them here or outside this callback,
+          // depending on the desired behavior.
+        } else {
+          // If no user, navigate to login
+          navigate("/login");
+          return;
+        }
+      });
     } catch (error) {
       console.error("Error adding comment:", error);
     }
