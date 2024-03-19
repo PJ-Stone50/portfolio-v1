@@ -34,12 +34,12 @@ function DesktopHeader() {
         initial="hidden"
         animate="visible"
         // transition={{ duration: 0.5, delay: 0.25 }}
-        className="h-full max-w-[700px] bg-white items-start  flex flex-col justify-center xl:pl-[15rem] pl-[3rem] gap-3 transition-[1s] duration-500"
+        className="h-full max-w-[1200px] bg-white items-start  flex flex-col justify-center xl:pl-[15rem] pl-[3rem] gap-3 transition-[1s] duration-500"
       >
-        <h1 className="type-writer text-black text-[24px] whitespace-nowrap">
+        <h1 className="type-writer text-black text-[28px] whitespace-nowrap">
           I created by
           <span
-            className="ml-[5px]"
+            className="ml-[5px] text-[42px]"
             style={{ fontWeight: "bold", opacity: "80%" }}
           >
             {text}
@@ -49,11 +49,11 @@ function DesktopHeader() {
           </span>
         </h1>
 
-        <h1 className="text-black font-bold text-[32px]">
+        <h1 className="text-black font-bold text-[32px] whitespace-nowrap">
           From Pixels to Products
         </h1>
 
-        <h1 className="text-black font-bold text-[32px]">
+        <h1 className="text-black font-bold text-[32px] whitespace-nowrap">
           My Design & Development Portfolio
         </h1>
         <p className="text-[18px] text-black font-medium">
@@ -75,8 +75,8 @@ function DesktopHeader() {
           />
         </div>
       </motion.div>
-      <div className="w-full h-full bg-white items-center xl:pl-[5rem] flex flex-col justify-center pr-5">
-        <img className="" src={Profile} alt="github" width={300} />
+      <div className="w-full h-full bg-white items-center xl:pl-[1rem] flex flex-col justify-center pr-5">
+        <img className="" src={Profile} alt="github" width={400} />
       </div>
       <motion.div
         style={{
@@ -102,6 +102,7 @@ function DesktopHeader() {
 function MobileHeader() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
   const mainControls = useAnimation();
   const slideControls = useAnimation();
@@ -121,7 +122,7 @@ function MobileHeader() {
   return (
     <div
       ref={ref}
-      className="w-full h-full bg-white items-center flex flex-col-reverse justify-center transition-[1s] duration-500"
+      className="w-full h-screen bg-white items-center flex flex-col-reverse justify-center transition-[1s] duration-500"
     >
       <motion.div
         variants={{
@@ -131,10 +132,9 @@ function MobileHeader() {
         initial="hidden"
         animate="visible"
         transition={{ duration: 0.5, delay: 0.25 }}
-        style={{ padding: "1rem" }}
-        className="w-full h-full bg-white items-start gap-3 flex flex-col justify-start px-5 py-5 transition-[1s] duration-500"
+        className="w-full h-full px-10 py-3 mt-[-5rem] z-10 items-start gap-3 flex flex-col justify-start transition-[1s] duration-500"
       >
-        <h1 className="type-writer text-black font-medium text-[24px] whitespace-nowrap">
+        <h1 className="type-writer mt-[.5rem] text-black font-medium text-[28px] whitespace-nowrap">
           I created by
           <span
             className="ml-[5px]"
@@ -147,13 +147,13 @@ function MobileHeader() {
           </span>
         </h1>
 
-        <h1 className="text-black font-bold text-[20px]">
+        <h1 className="text-black mt-[.5rem] font-bold text-[24px]">
           From Pixels to Products
         </h1>
-        <h1 className="text-black font-bold text-[20px]">
+        <h1 className="text-black mt-[.5rem] font-bold text-[24px]">
           My Design & Development Portfolio
         </h1>
-        <p className="text-[18px] text-black font-medium">
+        <p className="text-[18px] mt-[.5rem] text-black font-medium">
           Witness the journey from initial concepts to polished products. I
           design and develop experiences that are both beautiful and functional.
         </p>
@@ -180,7 +180,7 @@ function MobileHeader() {
 }
 
 function Header() {
-  const isTablet = useMediaQuery({ query: "(min-width: 768px)" });
+  const isTablet = useMediaQuery({ query: "(min-width: 900px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
   return <>{isTablet ? <DesktopHeader /> : <MobileHeader />}</>;

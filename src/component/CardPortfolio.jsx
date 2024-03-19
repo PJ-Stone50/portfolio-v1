@@ -16,14 +16,20 @@ export const textAnimate = {
   transition: { type: "spring", bounce: 0.4, duration: 3 },
 };
 
-export default function CardPortfolio({ src, heading, p, linkCode, linkDemo }) {
+export default function CardPortfolio({
+  src,
+  heading,
+  p,
+  linkCode,
+  linkDemo,
+  currentComponent,
+  setCurrentComponent,
+}) {
   const isTablet = useMediaQuery({ query: "(max-width: 1080px)" });
   const isMobile = useMediaQuery({ query: "(min-width: 680px)" });
 
   const [labelWidth, setLabelWidth] = useState(0);
   const [labelWidth1, setLabelWidth1] = useState(0);
-
-  useEffect(() => {}, []);
 
   return (
     <motion.div
@@ -31,42 +37,94 @@ export default function CardPortfolio({ src, heading, p, linkCode, linkDemo }) {
       whileInView={"onscreen"}
       viewport={{ once: false, amount: 0.1 }}
       transition={{ staggerChildren: 0.5 }}
-      className="w-full h-fit flex  gap-3 px-5 "
+      className="w-full h-fit flex justify-start gap-3 px-5 "
     >
       <div
         className={
           isMobile
-            ? "card w-full h-fit flex flex items-start bg-white rounded-sm duration-500  z-10"
-            : "card w-full h-fit flex flex-col  bg-white rounded-sm duration-500   z-10"
+            ? "card relative w-fit h-fit flex  items-start bg-white shadow-lg rounded-sm duration-500  z-10"
+            : "card relative w-full h-fit flex flex-col  bg-white shadow-lg rounded-sm duration-500   z-10"
         }
       >
+        <div
+          className={
+            isMobile
+              ? "ml-[6.7rem] absolute left-[-110px] top-[-30px]"
+              : "absolute left-[95px] top-[-30px]"
+          }
+          style={{ zIndex: "-1" }}
+        >
+          <button
+            onClick={() => setCurrentComponent(true)}
+            type="button"
+            className={
+              currentComponent
+                ? "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black bg-black text-white active:text-white duration-500 rounded-t-sm btn-shadow  p-1 items-center"
+                : "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black active:text-white duration-500 rounded-t-sm btn-shadow bg-white text-black p-1 items-center"
+            }
+          >
+            Portfolio
+          </button>
+        </div>
+        <div
+          className={
+            isMobile
+              ? "absolute left-[70px] top-[-30px] "
+              : "absolute left-[0px] top-[-30px] "
+          }
+          style={{ zIndex: "0" }}
+        >
+          <button
+            onClick={() => setCurrentComponent(false)}
+            className={
+              currentComponent
+                ? "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black bg-white text-black active:text-white duration-500 rounded-t-sm btn-shadow  p-1 items-center"
+                : "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black active:text-white duration-500 rounded-t-sm btn-shadow bg-black text-white p-1 items-center"
+            }
+          >
+            Ecommerce
+          </button>
+        </div>
         <div className="w-full h-fit rounded-sm flex items-center justify-end pr-[1.5rem]">
           <motion.img
             transition={{ duration: 1 }}
             variants={textAnimate}
             src={src}
             alt="leftImg"
-            // width={isMobile ? 500 : }
             className={
               isMobile
-                ? "w-[600px] h-[1/2] object-contain shadow-xl rounded-sm  py-5 px-5"
+                ? "w-full h-fit object-contain shadow-xl rounded-sm  py-5 px-5"
                 : "w-full h-fit object-cover shadow-xl rounded-sm   py-5 px-5"
             }
           />
         </div>
 
-        <div className="right w-full h-fit flex flex-col  ml-[0.5rem] pt-[1.5rem]  rounded-sm">
+        <div
+          className={
+            isTablet
+              ? "right  bg-white w-full max-w-[700px] h-fit flex flex-col  ml-[0.5rem] pt-[1.5rem]  rounded-sm"
+              : "right bg-white w-full max-w-[700px] h-fit flex flex-col  ml-[0.5rem] pt-[1.5rem]  rounded-sm"
+          }
+        >
           <motion.h1
             transition={{ duration: 1 }}
             variants={textAnimate}
-            className="text-[24px] font-bold"
+            className={
+              isMobile
+                ? "text-[32px] font-bold whitespace-nowrap"
+                : "text-[24px] font-bold"
+            }
           >
             {heading}
           </motion.h1>
           <motion.p
             transition={{ duration: 1 }}
             variants={textAnimate}
-            className="pb-3 duration-500"
+            className={
+              isMobile
+                ? "pb-3 duration-500 max-w-[600px] "
+                : "pb-3 duration-500 max-w-[600px] text-[18px]"
+            }
           >
             {p}
           </motion.p>
@@ -104,11 +162,11 @@ export default function CardPortfolio({ src, heading, p, linkCode, linkDemo }) {
                 id="demo"
                 onMouseEnter={() => {
                   setLabelWidth1(50);
-                  console.log("hovering", labelWidth1);
+                  // console.log("hovering", labelWidth1);
                 }}
                 onMouseLeave={() => {
                   setLabelWidth1(0);
-                  console.log("leaving", labelWidth1);
+                  // console.log("leaving", labelWidth1);
                 }}
                 target="_blank"
                 className="whitespace-nowrap hover:border-black hover:border-b-2  duration-500 hover:rounded-sm hover:px-3 "
