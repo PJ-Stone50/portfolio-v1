@@ -69,7 +69,7 @@ function Navbar() {
     <>
       <nav
         id="navbar"
-        className={`items-center shadow-lg w-full p-3 flex gap-3 justify-center  text-white transition-[1s]`}
+        className={`items-center  shadow-lg w-full  p-3 flex gap-[1.5rem] justify-center  text-white transition-[1s]`}
         style={{
           top: `${navbarTop}vh`,
           height: `${navbarHeight}px`,

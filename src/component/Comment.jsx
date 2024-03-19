@@ -45,20 +45,14 @@ const Comment = () => {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      // console.log("User", user);
       if (user) {
         setUserUid(user.uid);
-        // setEmail()
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
         const uid = user.uid;
-        // ...
       } else {
+        console.warn("Not found user");
       }
     });
   }, []);
-
-  console.log("FormData", formData);
 
   const fetchComments = async () => {
     try {

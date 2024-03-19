@@ -133,7 +133,7 @@ function Resume() {
           </p>
           <button
             type="button"
-            className="rounded-md items-center active:bg-black duration-500 active:text-white btn-shadow w-fit h-fit flex gap-2 bg-white px-3 py-1 "
+            className="rounded-md items-center active:bg-black duration-500 active:text-white hover:btn-shadow shadow-xl w-fit h-fit flex gap-2 bg-white px-3 py-1 "
           >
             <p>Download</p>
             <img src={DownloadImage} alt="download" width={30} />

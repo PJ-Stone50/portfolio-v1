@@ -41,7 +41,7 @@ function Portfolio() {
   const isMobile = useMediaQuery({ query: "(min-width: 780px)" });
 
   useEffect(() => {
-    console.log("Cur Component:", currentComponent);
+    // console.log("Cur Component:", currentComponent);
   }, [currentComponent]);
 
   return (
@@ -68,46 +68,6 @@ function Portfolio() {
             : "relative bg-white w-full h-fit pb-5  shadow-lg items-start flex flex-col justify-center "
         }
       >
-        <div
-          className={
-            isMobile
-              ? "absolute left-[20px] top-[12px] "
-              : "absolute left-[110px] top-[-36px]"
-          }
-          style={{ zIndex: "0" }}
-        >
-          <button
-            onClick={() => setCurrentComponent(true)}
-            type="button"
-            className={
-              currentComponent
-                ? "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black bg-black text-white active:text-white duration-500 rounded-t-sm btn-shadow  p-1 items-center"
-                : "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black active:text-white duration-500 rounded-t-sm btn-shadow bg-white text-black p-1 items-center"
-            }
-          >
-            Portfolio
-          </button>
-        </div>
-        <div
-          className={
-            isMobile
-              ? "absolute left-[90px] top-[12px] "
-              : "absolute left-[20px] top-[-36px] "
-          }
-          style={{ zIndex: "0" }}
-        >
-          <button
-            onClick={() => setCurrentComponent(false)}
-            className={
-              currentComponent
-                ? "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black bg-white text-black active:text-white duration-500 rounded-t-sm btn-shadow  p-1 items-center"
-                : "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black active:text-white duration-500 rounded-t-sm btn-shadow bg-black text-white p-1 items-center"
-            }
-          >
-            Ecommerce
-          </button>
-        </div>
-
         {!currentComponent ? (
           <CardPortfolio
             src={demoEcommerce.src}
@@ -115,6 +75,8 @@ function Portfolio() {
             p={demoEcommerce.p}
             linkCode={demoEcommerce.linkCode}
             linkDemo={demoEcommerce.linkDemo}
+            currentComponent={currentComponent}
+            setCurrentComponent={setCurrentComponent}
           />
         ) : (
           <CardPortfolio
@@ -123,6 +85,8 @@ function Portfolio() {
             p={demoPortfolio.p}
             linkCode={demoPortfolio.linkCode}
             linkDemo={demoPortfolio.linkDemo}
+            currentComponent={currentComponent}
+            setCurrentComponent={setCurrentComponent}
           />
         )}
       </div>
