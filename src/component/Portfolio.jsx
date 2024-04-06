@@ -3,6 +3,10 @@ import { useMediaQuery } from "react-responsive";
 import CardPortfolio from "./CardPortfolio";
 
 import DemoEcommerce from "../../public/images/demoEcommerce.png";
+import DemoEcommerce2_1 from "../../public/images/ecommerce2-1.png";
+import DemoEcommerce2_2 from "../../public/images/ecommerce2-2.png";
+import DemoEcommerce2_3 from "../../public/images/ecommerce2-3.png";
+import DemoEcommerce2_4 from "../../public/images/ecommerce2-4.png";
 import DemoPortfolio from "../../public/images/demoPortfolio.png";
 
 import { motion } from "framer-motion";
@@ -13,6 +17,14 @@ const demoEcommerce = {
   p: "This online ordering platform, built to showcase my expertise in web development, leverages ReactJS for a user-friendly interface and NodeJS for robust server-side data management. Designed to push the boundaries of modern e-commerce, it stands as a testament to my skills and dedication.",
   linkCode: "https://gitlab.com/PJ-Stone50/clothing-shop",
   linkDemo: "https://vocal-churros-4f64bf.netlify.app/store",
+};
+
+const demoEcommerce2 = {
+  src: DemoEcommerce2_2,
+  heading: "Ecommerce Skooldio",
+  p: "This online ordering platform, built to showcase my expertise in web development, leverages ReactJS for a user-friendly interface and NodeJS for robust server-side data management. Designed to push the boundaries of modern e-commerce, it stands as a testament to my skills and dedication.",
+  linkCode: "/#portfolio",
+  linkDemo: "https://wdb-prj.vercel.app/",
 };
 
 const demoPortfolio = {
@@ -35,14 +47,59 @@ export const textAnimate = {
 };
 
 function Portfolio() {
-  const [currentComponent, setCurrentComponent] = useState(false);
+  const [currentComponent, setCurrentComponent] = useState(0);
 
   const isTablet = useMediaQuery({ query: "(min-width: 1080px)" });
   const isMobile = useMediaQuery({ query: "(min-width: 780px)" });
 
+  // const renderComponent = () => {
+  //   switch (currentComponent) {
+  //     case 0:
+  //       return (
+  //         <CardPortfolio
+  //           src={demoEcommerce.src}
+  //           heading={demoEcommerce.heading}
+  //           p={demoEcommerce.p}
+  //           linkCode={demoEcommerce.linkCode}
+  //           linkDemo={demoEcommerce.linkDemo}
+  //           currentComponent={currentComponent}
+  //           setCurrentComponent={() => setCurrentComponent(1)}
+  //         />
+  //       );
+  //     case 1:
+  //       return (
+  //         <CardPortfolio
+  //           src={demoPortfolio.src}
+  //           heading={demoPortfolio.heading}
+  //           p={demoPortfolio.p}
+  //           linkCode={demoPortfolio.linkCode}
+  //           linkDemo={demoPortfolio.linkDemo}
+  //           currentComponent={currentComponent}
+  //           setCurrentComponent={() => setCurrentComponent(2)}
+  //         />
+  //       );
+  //     case 2:
+  //       return (
+  //         <CardPortfolio
+  //           src={demoEcommerce2.src}
+  //           heading={demoEcommerce2.heading}
+  //           p={demoEcommerce2.p}
+  //           linkCode={demoEcommerce2.linkCode}
+  //           linkDemo={demoEcommerce2.linkDemo}
+  //           currentComponent={currentComponent}
+  //           setCurrentComponent={() => setCurrentComponent(0)} // Loop back to the first project or handle as needed
+  //         />
+  //       );
+  //     default:
+  //       setCurrentComponent(0); // Reset to first component in case of undefined state
+  //       return null;
+  //   }
+  // };
+
   useEffect(() => {
-    // console.log("Cur Component:", currentComponent);
-  }, [currentComponent]);
+    console.log("CurComp :",currentComponent)
+  },[currentComponent])
+  
 
   return (
     <div>
@@ -50,7 +107,7 @@ function Portfolio() {
         <span className="w-full bg-black h-[4px] mx-5 "></span>
         <motion.h1
           transition={{ duration: 1 }}
-          animater={{ textAnimate }}
+          animate={{ textAnimate }} // Corrected from animater to animate
           className={
             isMobile
               ? "text-[32px] font-bold mt-[-8px] mr-5"
@@ -68,27 +125,38 @@ function Portfolio() {
             : "relative bg-white w-full h-fit pb-5  shadow-lg items-start flex flex-col justify-center "
         }
       >
-        {!currentComponent ? (
-          <CardPortfolio
-            src={demoEcommerce.src}
-            heading={demoEcommerce.heading}
-            p={demoEcommerce.p}
-            linkCode={demoEcommerce.linkCode}
-            linkDemo={demoEcommerce.linkDemo}
-            currentComponent={currentComponent}
-            setCurrentComponent={setCurrentComponent}
-          />
-        ) : (
-          <CardPortfolio
-            src={demoPortfolio.src}
-            heading={demoPortfolio.heading}
-            p={demoPortfolio.p}
-            linkCode={demoPortfolio.linkCode}
-            linkDemo={demoPortfolio.linkDemo}
-            currentComponent={currentComponent}
-            setCurrentComponent={setCurrentComponent}
-          />
-        )}
+        {/* {renderComponent()} */}
+
+        {currentComponent === 0 && (
+  <CardPortfolio
+    src={demoEcommerce.src}
+    heading={demoEcommerce.heading}
+    p={demoEcommerce.p}
+    linkCode={demoEcommerce.linkCode}
+    linkDemo={demoEcommerce.linkDemo}
+    setCurrentComponent={setCurrentComponent}
+  />
+)}
+{currentComponent === 1 && (
+  <CardPortfolio
+    src={demoPortfolio.src}
+    heading={demoPortfolio.heading}
+    p={demoPortfolio.p}
+    linkCode={demoPortfolio.linkCode}
+    linkDemo={demoPortfolio.linkDemo}
+    setCurrentComponent={setCurrentComponent}
+  />
+)}
+{currentComponent === 2 && (
+  <CardPortfolio
+    src={demoEcommerce2.src}
+    heading={demoEcommerce2.heading}
+    p={demoEcommerce2.p}
+    linkCode={demoEcommerce2.linkCode}
+    linkDemo={demoEcommerce2.linkDemo}
+    setCurrentComponent={setCurrentComponent}
+  />
+)}
       </div>
     </div>
   );

@@ -31,6 +31,8 @@ export default function CardPortfolio({
   const [labelWidth, setLabelWidth] = useState(0);
   const [labelWidth1, setLabelWidth1] = useState(0);
 
+  
+
   return (
     <motion.div
       initial={"offscreen"}
@@ -55,13 +57,24 @@ export default function CardPortfolio({
           style={{ zIndex: "-1" }}
         >
           <button
-            onClick={() => setCurrentComponent(true)}
+            onClick={() => setCurrentComponent(0)}
             type="button"
-            className={
-              currentComponent
-                ? "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black bg-black text-white active:text-white duration-500 rounded-t-sm btn-shadow  p-1 items-center"
-                : "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black active:text-white duration-500 rounded-t-sm btn-shadow bg-white text-black p-1 items-center"
-            }
+            className={`portfolioBtn mt-1 ${currentComponent === 0 ? "bg-black text-white" : "hover:bg-black hover:text-white text-black"} active:text-white duration-500 rounded-t-sm btn-shadow p-1 items-center`}
+          >
+            Ecommerce
+          </button>
+        </div>
+        <div
+          className={
+            isMobile
+              ? "absolute left-[90px] top-[-30px] "
+              : "absolute left-[0px] top-[-30px] "
+          }
+          style={{ zIndex: "0" }}
+        >
+          <button
+            onClick={() => setCurrentComponent(1)}
+            className={`portfolioBtn mt-1 ${currentComponent === 1 ? "bg-black text-white" : "hover:bg-black hover:text-white text-black"} active:text-white duration-500 rounded-t-sm btn-shadow p-1 items-center`}
           >
             Portfolio
           </button>
@@ -69,20 +82,16 @@ export default function CardPortfolio({
         <div
           className={
             isMobile
-              ? "absolute left-[70px] top-[-30px] "
+              ? "absolute left-[165px] top-[-30px] "
               : "absolute left-[0px] top-[-30px] "
           }
           style={{ zIndex: "0" }}
         >
           <button
-            onClick={() => setCurrentComponent(false)}
-            className={
-              currentComponent
-                ? "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black bg-white text-black active:text-white duration-500 rounded-t-sm btn-shadow  p-1 items-center"
-                : "portfolioBtn  mt-1 active:bg-black hover:text-white hover:bg-black active:text-white duration-500 rounded-t-sm btn-shadow bg-black text-white p-1 items-center"
-            }
+            onClick={() => setCurrentComponent(2)}
+            className={`portfolioBtn mt-1 ${currentComponent === 2 ? "bg-black text-white" : "hover:bg-black hover:text-white text-black"} active:text-white duration-500 rounded-t-sm btn-shadow p-1 items-center`}
           >
-            Ecommerce
+            Ecommerce2
           </button>
         </div>
         <div className="w-full h-fit rounded-sm flex items-center justify-end pr-[1.5rem]">
