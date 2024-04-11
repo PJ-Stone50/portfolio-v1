@@ -51,8 +51,8 @@ export default function CardPortfolio({
         <div
           className={
             isMobile
-              ? "ml-[6.7rem] absolute left-[-110px] top-[-30px]"
-              : "absolute left-[95px] top-[-30px]"
+              ? "ml-[6.7rem] absolute left-[-35px] top-[-30px]"
+              : "absolute left-[70px] top-[-30px]"
           }
           style={{ zIndex: "-1" }}
         >
@@ -61,13 +61,13 @@ export default function CardPortfolio({
             type="button"
             className={`portfolioBtn mt-1 ${currentComponent === 0 ? "bg-black text-white" : "hover:bg-black hover:text-white text-black"} active:text-white duration-500 rounded-t-sm btn-shadow p-1 items-center`}
           >
-            Ecommerce
+            Ecommerce1
           </button>
         </div>
         <div
           className={
             isMobile
-              ? "absolute left-[90px] top-[-30px] "
+              ? "absolute left-[0px] top-[-30px] "
               : "absolute left-[0px] top-[-30px] "
           }
           style={{ zIndex: "0" }}
@@ -82,8 +82,8 @@ export default function CardPortfolio({
         <div
           className={
             isMobile
-              ? "absolute left-[165px] top-[-30px] "
-              : "absolute left-[0px] top-[-30px] "
+              ? "absolute left-[175px] top-[-30px] "
+              : "absolute left-[170px] top-[-30px] "
           }
           style={{ zIndex: "0" }}
         >
